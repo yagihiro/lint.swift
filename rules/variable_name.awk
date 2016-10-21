@@ -12,7 +12,7 @@ BEGIN {
     param_limit_max = 40
     param_type      = "warning"
     param_id        = "variable_name"
-    param_message   = "Variable name is invalid, min %d, max %d characters, format: /^[A-Z][A-Za-z]*/. (%s)"
+    param_message   = "Variable name is invalid, min %d, max %d characters, format: /^[A-Z][A-Za-z\`]*/. (%s)"
 
     RS = "\n";
     FS = " ";
@@ -24,7 +24,7 @@ BEGIN {
     for (i=1; i<=NF; i++) {
 
         if ( n == 1 ) {
-            if ( $i != "func" && $i != "{" && ($i !~ /^[.a-zA-Z]/ ||
+            if ( $i != "func" && $i != "{" && ($i !~ /^[\`.a-zA-Z]/ ||
                 length($i) < param_limit_min ||
                 length($i) > param_limit_max) )
             {
@@ -39,4 +39,3 @@ BEGIN {
         }
     }
 }
-
